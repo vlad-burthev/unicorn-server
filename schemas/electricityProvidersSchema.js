@@ -1,6 +1,6 @@
-import { Schema } from "mongoose";
+import mongoose from "mongoose";
 
-export const electricityProvidersSchema = new Schema(
+export const ElectricityProvidersSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -29,4 +29,9 @@ export const electricityProvidersSchema = new Schema(
     },
   },
   { timestamps: true }
+);
+
+export const ElectricityProviders = mongoose.model(
+  "Electricity_Providers",
+  ElectricityProvidersSchema
 );
