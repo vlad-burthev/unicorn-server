@@ -1,4 +1,3 @@
-// class будет расширять Error (extends Error)
 export class ApiError extends Error {
   constructor(status, message) {
     super();
@@ -15,7 +14,7 @@ export class ApiError extends Error {
   }
 
   static forbidden(message) {
-    return new ApiError(403, message);
+    return new ApiError(403, [message]);
   }
 
   static unauthorized(message) {
