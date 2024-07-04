@@ -40,10 +40,9 @@ export const registration = async (req, res, next) => {
     res.cookie("token", token, {
       httpOnly: true,
       maxAge: 3600000 * 24,
-      secure: process.env.NODE_ENV === "production",
     });
 
-    return res.status(200).json("Registered");
+    return res.status(200).json(existingUser.email);
   } catch (error) {
     return next(ApiError.internal(error.message));
   }
@@ -68,14 +67,12 @@ export const login = async (req, res, next) => {
     }
 
     const token = generateJwt(existingUser.email);
-    console.log(token);
     res.cookie("token", token, {
       httpOnly: true,
       maxAge: 3600000 * 24,
-      secure: process.env.NODE_ENV === "production",
     });
 
-    return res.status(200).json("Authorized");
+    return res.status(200).json(existingUser.email);
   } catch (error) {
     return next(ApiError.internal(error.message));
   }
@@ -87,9 +84,8 @@ export const checkAuth = async (req, res, next) => {
     res.cookie("token", token, {
       httpOnly: true,
       maxAge: 3600000 * 24,
-      secure: process.env.NODE_ENV === "production",
     });
-    return res.status(200).json("Authorized");
+    return res.status(200).json(req.user.email);
   } catch (error) {
     return next(ApiError.internal(error.message));
   }
