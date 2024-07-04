@@ -15,7 +15,6 @@ const generateJwt = (email) => {
 export const registration = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return next(ApiError.badRequest({ error: errors.array() }));
@@ -42,7 +41,7 @@ export const registration = async (req, res, next) => {
       maxAge: 3600000 * 24,
     });
 
-    return res.status(200).json(existingUser.email);
+    return res.status(200).json(email);
   } catch (error) {
     return next(ApiError.internal(error.message));
   }
