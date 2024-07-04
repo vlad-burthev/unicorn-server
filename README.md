@@ -33,6 +33,16 @@ SECRET_KEY="your_secret_key"
 
 The server will be launched on the port specified in the PORT environment variable.
 
+### Step 4: Start the server
+
+To start the server in development mode, use the following command:
+
+```bash
+npm run dev
+```
+
+The server will be launched on the port specified in the PORT environment variable.
+
 # Project structure
 
 - controllers/
